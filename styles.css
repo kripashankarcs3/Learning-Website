@@ -1,201 +1,339 @@
-/* General Styles */
-body, h1, h2, h3, p, ul {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ===============================
+   Modern Professional UI Styles
+   =============================== */
+
+:root {
+  --bg0: #0b1020;
+  --header-pad-x: 12px;
+
+  --card: rgba(255, 255, 255, 0.10);
+  --card2: rgba(255, 255, 255, 0.14);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+  --muted2: rgba(255, 255, 255, 0.55);
+
+  --brand1: #6d28d9; /* purple */
+  --brand2: #06b6d4; /* cyan */
+  --brand3: #f97316; /* orange */
+  --brand4: #ef4444; /* red */
+
+  --shadow: 0 14px 35px rgba(0,0,0,.25);
+  --shadow2: 0 10px 24px rgba(0,0,0,.18);
+
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+
+  --container: 1180px;
 }
-.logo{
-    color: rgb(28, 44, 216);
-    font-family: Georgia, 'Times New Roman', Times, serif;
+
+* {
+  box-sizing: border-box;
 }
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(to right, rgb(101, 194, 161), rgb(90, 169, 233));
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  line-height: 1.6;
+  color: #0b1220;
+
+  min-height: 100vh;
+  background:
+    radial-gradient(1000px 600px at 15% 0%, rgba(109, 40, 217, .30), transparent 55%),
+    radial-gradient(900px 520px at 85% 10%, rgba(6, 182, 212, .30), transparent 55%),
+    radial-gradient(700px 500px at 35% 100%, rgba(249, 115, 22, .22), transparent 60%),
+    linear-gradient(110deg, #0a1024 0%, #0b1b3a 35%, #081a2e 100%);
 }
 
-/* Header */
+/* Shared container */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a {
+  color: inherit;
+}
+
+/* ===============================
+   Header / Nav
+   =============================== */
+
 .header {
-    background: linear-gradient(to right, rgb(213, 97, 226), rgb(189, 13, 42));
-    color: #fff;
-    padding: 1em 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: rgba(8, 14, 34, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+  /* cleaner look */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
+
+
 .header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px var(--header-pad-x);
 }
-.header .logo {
-    font-size: 1.8em;
-    font-family: cursive;
+
+
+.logo {
+  margin: 0;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 1.35rem;
+  white-space: nowrap;
 }
+
+.logo span {
+  background: linear-gradient(90deg, var(--brand2), #a78bfa, var(--brand3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .navbar .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1em;
-}
-.navbar .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1em;
-}
-nav a:hover {
-    background-color: #39c1ee;
-    color: rgb(2, 1, 17);
-    transform: scale(1.1); /* Slightly scale up */
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+
+  /* scrollable nav */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(6, 182, 212, 0.55) rgba(255, 255, 255, 0.08);
 }
 
-/* Hero Section */
+.nav-links::-webkit-scrollbar {
+  height: 8px;
+}
+
+.nav-links::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.55);
+  border-radius: 999px;
+}
+
+.nav-links::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  border: 1px solid rgba(255, 255, 255, 0.0);
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease,
+    color 180ms ease;
+}
+
+.nav-links a:hover {
+  background: rgba(6, 182, 212, 0.18);
+  border-color: rgba(6, 182, 212, 0.35);
+  transform: translateY(-1px);
+}
+
+.nav-links a:focus-visible {
+  outline: 3px solid rgba(6, 182, 212, 0.45);
+  outline-offset: 2px;
+}
+
+/* ===============================
+   Hero
+   =============================== */
+
 .hero {
-    background: linear-gradient(to right, rgb(240, 34, 34), rgb(235, 144, 159));
-    text-align: center;
-    padding: 2em 0;
-    color: #fff;
+  position: relative;
+  padding: 70px 0 40px;
+  color: var(--text);
 }
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(700px 350px at 20% 20%, rgba(109, 40, 217, .35), transparent 60%),
+    radial-gradient(700px 350px at 80% 20%, rgba(6, 182, 212, .35), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .hero h2 {
-    font-size: 2em;
-    margin-bottom: 0.5em;
+  margin: 0 0 10px;
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-/* Blog Section */
-.blog {
-    padding: 2em 0;
+.hero p {
+  margin: 0 auto;
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 1.05rem;
 }
+
+/* ===============================
+   Sections + Cards
+   =============================== */
+
+.blog,
+.vision,
+.community,
+.contact {
+  padding: 34px 0;
+}
+
+section h2 {
+  color: #fff;
+  text-align: center;
+  margin: 0 0 18px;
+  font-size: 1.6rem;
+}
+
+section p {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Blog grid */
 .blog .container {
-    max-width: 1200px;
-    margin: auto;
+  max-width: var(--container);
 }
-.blog h2 {
-    text-align: center;
-    margin-bottom: 1em;
-}
+
 .posts {
-    display: flex;
-    gap: 2em;
-    flex-wrap: wrap;
-    justify-content: center;
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
 }
+
+@media (max-width: 980px) {
+  .posts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .posts {
+    grid-template-columns: 1fr;
+  }
+}
+
 .post {
-    background: #f0d9d9;
-    padding: 1em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    max-width: 300px;
-    text-align: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow2);
+
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease,
+    background 220ms ease;
 }
+
+.post:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: var(--shadow);
+}
+
 .post img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  display: block;
 }
+
+.post h3 {
+  margin: 14px 14px 6px;
+}
+
 .post h3 a {
-    text-decoration: none;
-    color: #333;
+  display: inline-block;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.93);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: 1.05rem;
 }
+
+.post h3 a:hover {
+  color: #dbeafe;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .post p {
-    margin-top: 0.5em;
-    font-size: 0.9em;
-    color: #555;
+  text-align: left;
+  padding: 0 14px 16px;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
-/* Footer */
+/* Vision / Community / Contact blocks */
+.vision .container,
+.community .container,
+.contact .container {
+  max-width: 980px;
+}
+
+.vision p,
+.community p,
+.contact p {
+  font-size: 1.05rem;
+}
+
+section.cardish {
+  padding: 0;
+}
+
+/* ===============================
+   Footer
+   =============================== */
+
 footer {
-    background: linear-gradient(to right, orange, pink);
-    color: #fff;
-    text-align: center;
-    padding: 2em 0;
-}
-.profile-img img {
-    width: 100px;
-    height: 100px;
-    border-radius: 90%;
-    border: 3px solid #f4a261;
-    object-fit: fill;
-}
-.about1 {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-.bio {
-    max-width: 600px;
-}
-.container1 {
-    width: 100%;
-    max-width: 1500px;
-    margin: 0 auto;
-    background-color: #877c7c;
-}
-.about-content1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.about-us-section {
-    background-color: #fff;
-    padding: 40px;
-    text-align: center;
-    margin: 20px auto;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 1000px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 28px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(10, 16, 36, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.about-us-section h1 {
-    font-size: 2.5em;
-    color: #333;
-    margin-bottom: 20px;
+footer p {
+  margin: 0;
+  text-align: center;
 }
 
-.about-us-section p {
-    font-size: 1.2em;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 30px;
+/* Mobile polish */
+@media (max-width: 520px) {
+  .header .container {
+    padding: 12px 14px;
+  }
 }
 
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.social-icons a {
-    font-size: 1.5em;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.social-icons a:hover {
-    color: #0073e6;
-}
-
-.social-icons a.linkedin {
-    color: #0077b5;
-}
-
-.social-icons a.twitter {
-    color: #1da1f2;
-}
-
-.social-icons a.whatsapp {
-    color: #25d366;
-}
-
-.social-icons a.linkedin:hover {
-    color: #005682;
-}
-
-.social-icons a.twitter:hover {
-    color: #0d95e8;
-}
-
-.social-icons a.whatsapp:hover {
-    color: #128c7e;
-}
